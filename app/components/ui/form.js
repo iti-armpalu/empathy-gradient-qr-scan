@@ -37,10 +37,10 @@ export default function Form({ onSubmit }) {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/survey", {
+      const res = await fetch("/api/log", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, privacy: "test" }),
+        body: JSON.stringify({ type: "survey", name, email, privacy: "test" }),
       });
   
       if (!res.ok) {

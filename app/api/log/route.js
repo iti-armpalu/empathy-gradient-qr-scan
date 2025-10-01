@@ -16,7 +16,6 @@ export async function POST(req) {
     if (type === "survey") {
       url.searchParams.set("name", name ?? "");
       url.searchParams.set("email", email ?? "");
-      url.searchParams.set("privacy", privacy ?? "prod");
     }
 
     if (type === "article") {
