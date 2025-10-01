@@ -1,0 +1,64 @@
+.container {
+    min-height: 100vh;
+    background: #fefaf2;
+    padding: 3rem 1rem;
+  }
+  
+  .content {
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+  
+  .backLink {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  .backLink:hover {
+    text-decoration: underline;
+  }
+  
+  .title {
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--foreground);
+  }
+  
+  .prose {
+    color: var(--foreground);
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .paragraph {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .listItem {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    margin-top: 2rem;
+  }
+  

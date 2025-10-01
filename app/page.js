@@ -35,11 +35,11 @@ export default function HomePage() {
   ];
 
   const videos = [
-    // {
-    //   title: "CMO Summit: AI and The Future of Creativity",
-    //   url: "https://www.youtube.com/watch?v=ZJTX6GgUPcw",
-    //   isFeatured: false,
-    // },
+    {
+      title: "Exploring AI’s role in marketing | Roy Armale keynote at NextM",
+      url: "https://youtu.be/7bxrRvUDLDw?si=pA8KH3JzWnLG0ucB",
+      isFeatured: false,
+    },
   ];
 
   return (

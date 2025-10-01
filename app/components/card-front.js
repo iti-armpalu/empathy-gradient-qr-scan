@@ -54,7 +54,7 @@ export default function CardFront({ setFlipped, articles }) {
               </div>
             ))}
           </div> */}
-          <Flip onClick={() => setFlipped(true)}>Explore more resources</Flip>
+          <Flip onClick={() => setFlipped(true)}>Explore articles and videos</Flip>
         </div>
 
         <div>
