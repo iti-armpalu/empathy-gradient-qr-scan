@@ -1,0 +1,310 @@
+/* ---------------------------------------
+  Layout & Container
+---------------------------------------- */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  background-color: #f4f4f4;
+  padding: 1rem;
+  perspective: 1000px;
+}
+
+.cardWrapper {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  position: relative;
+}
+
+.cardContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+}
+
+/* ---------------------------------------
+  Card Front & Back
+---------------------------------------- */
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  background: #fefaf2;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.front {
+  z-index: 2;
+}
+
+.back {
+  transform: rotateY(180deg);
+  overflow: hidden; /* still needs this to wrap scrollable area */
+  z-index: 1;
+}
+
+.scrollContainer {
+  height: 100%;
+  overflow-y: auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* ---------------------------------------
+  Profile Details
+---------------------------------------- */
+/* .profileImage {
+  border-radius: 6px;
+} */
+
+.name {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.8rem;
+  color: #084955;
+  font-family: var(--font-fonseca-medium);
+}
+
+.title {
+  font-size: 1rem;
+  color: #6cac9f;
+  font-family: var(--font-fonseca-thin);
+  margin-bottom: 1.5rem;
+}
+
+.bio {
+  font-size: 1rem;
+  color: #16545e;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+/* ---------------------------------------
+  Articles & Links
+---------------------------------------- */
+.card h2 {
+  font-size: 1rem;
+  color: #084955;
+  font-family: var(--font-fonseca-medium);
+}
+
+.articles {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.articleItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+  color: #084955;
+  font-size: 1rem;
+  padding: 0.25rem 0;
+}
+
+.readButton {
+  padding: 0.4rem 0.8rem;
+  font-family: var(--font-inter);
+  font-size: 0.9rem;
+  background-color: #fc6415;
+  color: #f6f4f0;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/* ---------------------------------------
+  Flip Button
+---------------------------------------- */
+.flipSection {
+  text-align: center;
+}
+
+.flipButton {
+  position: relative;
+  background-color: transparent;
+  color: #6cac9f;
+  border: none;
+  font-size: 0.9rem;
+  font-family: var(--font-fonseca-thin);
+  cursor: pointer;
+  text-align: right;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.iconWrap svg {
+  width: 20px;
+  height: 20px;
+  stroke: #6cac9f;
+}
+
+/* ---------------------------------------
+  Connect Section
+---------------------------------------- */
+.connect {
+  text-align: center;
+}
+
+.connectLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #084955;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.connectLink:hover {
+  text-decoration: underline;
+}
+
+.icon {
+  display: inline-block;
+}
+
+/* ---------------------------------------
+  Survey Section & Toggle
+---------------------------------------- */
+.surveySection {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+.surveyToggle {
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: left;
+  color: #6cac9f;
+  font-family: var(--font-fonseca-thin);
+}
+
+.surveyWrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Container for sliding */
+.surveyFormWrap {
+  overflow: hidden;
+  max-height: 0;
+  transition: 0.5s ease;
+}
+
+/* Slide-down state */
+.expanded {
+  max-height: 500px;
+  margin: 1rem 0;
+}
+
+/* Slide-up state */
+.collapsed {
+  max-height: 0;
+  margin: 0;
+}
+
+.surveyInner {
+  transition: opacity 0.4s ease;
+}
+
+.surveyThanks {
+  font-weight: 500;
+  color: #084955;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* ---------------------------------------
+  Expand Icon Animation
+---------------------------------------- */
+.iconSurvey.active {
+  background: transparent;
+}
+.iconSurvey:hover {
+  cursor: pointer;
+}
+.iconShape {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.iconSurvey .iconShape::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 2px;
+  background: #6cac9f;
+  border-radius: 3px;
+  transition: all 0.5s ease;
+}
+.iconSurvey .iconShape::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 20px;
+  background: #6cac9f;
+  border-radius: 3px;
+  transition: all 0.5s ease;
+}
+.iconSurvey .iconShape.active::before {
+  transform: translate(-50%, -50%) rotate(180deg);
+  transition: all 0.5s ease;
+}
+.iconSurvey .iconShape.active::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  transition: all 0.5s ease;
+}
+
+/* ---------------------------------------
+  Fade Animation
+---------------------------------------- */
+.fadeIn {
+  animation: animateIn 0.6s ease-out;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(30%);
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+    visibility: visible;
+  }
+}
+
