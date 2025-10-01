@@ -37,7 +37,25 @@ export default function Form({ onSubmit }) {
     setLoading(true);
 
     try {
-      const url = new URL(process.env.NEXT_PUBLIC_LOG_SHEET_URL);
+      // const url = new URL(process.env.NEXT_PUBLIC_LOG_SHEET_URL);
+      // Read env at build-time (NEXT_PUBLIC_* is inlined by Next.js)
+      const base = process.env.NEXT_PUBLIC_LOG_SHEET_URL;
+
+      if (!base) {
+        throw new Error(
+          "Missing NEXT_PUBLIC_LOG_SHEET_URL (check Vercel envs for this environment and redeploy)."
+        );
+      }
+
+      const url = new URL(base);
+
+      // Prevent mixed content when your site runs on HTTPS (Vercel)
+      if (typeof window !== "undefined" && window.location.protocol === "https:" && url.protocol !== "https:") {
+        throw new Error(
+          `Mixed content blocked: target must be https, got "${url.protocol}".`
+        );
+      }
+
       url.searchParams.set("type", "survey");
       url.searchParams.set("name", name);
       url.searchParams.set("email", email);
@@ -46,11 +64,25 @@ export default function Form({ onSubmit }) {
       console.log("[SURVEY] Hitting sheet URL:", url.toString()); // 🪵 View in logs
 
 
-      await fetch(url.toString(), {
+      // await fetch(url.toString(), {
+      //   method: "GET",
+      //   mode: "no-cors",
+      // });
+
+      // IMPORTANT: do NOT use no-cors, it hides real errors
+      const res = await fetch(url.toString(), {
         method: "GET",
-        mode: "no-cors",
+        cache: "no-store",
+        // If your endpoint requires CORS, it must allow your Vercel origin.
+        // Do not add mode: "no-cors" — it will mask failures.
       });
 
+      if (!res.ok) {
+        const errText = await res.text().catch(() => "");
+        throw new Error(`Upstream responded ${res.status}. ${errText}`);
+      }
+
+      // success
       onSubmit(); // tell parent "submitted"
       setName("");
       setEmail("");
