@@ -37,49 +37,15 @@ export default function Form({ onSubmit }) {
     setLoading(true);
 
     try {
-      // const url = new URL(process.env.NEXT_PUBLIC_LOG_SHEET_URL);
-      // Read env at build-time (NEXT_PUBLIC_* is inlined by Next.js)
-      const base = process.env.NEXT_PUBLIC_LOG_SHEET_URL;
-
-      if (!base) {
-        throw new Error(
-          "Missing NEXT_PUBLIC_LOG_SHEET_URL (check Vercel envs for this environment and redeploy)."
-        );
-      }
-
-      const url = new URL(base);
-
-      // Prevent mixed content when your site runs on HTTPS (Vercel)
-      if (typeof window !== "undefined" && window.location.protocol === "https:" && url.protocol !== "https:") {
-        throw new Error(
-          `Mixed content blocked: target must be https, got "${url.protocol}".`
-        );
-      }
-
-      url.searchParams.set("type", "survey");
-      url.searchParams.set("name", name);
-      url.searchParams.set("email", email);
-      url.searchParams.set("privacy", "test")
-
-      console.log("[SURVEY] Hitting sheet URL:", url.toString()); // 🪵 View in logs
-
-
-      // await fetch(url.toString(), {
-      //   method: "GET",
-      //   mode: "no-cors",
-      // });
-
-      // IMPORTANT: do NOT use no-cors, it hides real errors
-      const res = await fetch(url.toString(), {
-        method: "GET",
-        cache: "no-store",
-        // If your endpoint requires CORS, it must allow your Vercel origin.
-        // Do not add mode: "no-cors" — it will mask failures.
+      const res = await fetch("/api/survey", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, privacy: "test" }),
       });
-
+  
       if (!res.ok) {
-        const errText = await res.text().catch(() => "");
-        throw new Error(`Upstream responded ${res.status}. ${errText}`);
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to submit");
       }
 
       // success
@@ -89,6 +55,12 @@ export default function Form({ onSubmit }) {
       setAcceptedPrivacy(false)
     } catch (err) {
       console.error("Survey submit failed", err);
+      setErrors((prev) => ({
+        ...prev,
+        form:
+          err?.message ||
+          "Submission failed. Please try again later.",
+      }));
     } finally {
       setLoading(false);
     }

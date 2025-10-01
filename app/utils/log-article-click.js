@@ -1,13 +1,10 @@
+// app/utils/log-article-click.js
 export const logArticleClick = async (title, page = "unknown") => {
-  const url = new URL(process.env.NEXT_PUBLIC_LOG_SHEET_URL);
-  url.searchParams.set("type", "article");
-  url.searchParams.set("title", title);
-  url.searchParams.set("page", page);
-
   try {
-    await fetch(url.toString(), {
-      method: "GET",
-      mode: "no-cors", // prevent browser from caring about CORS at all
+    await fetch("/api/log", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "article", title, page }),
     });
   } catch (err) {
     console.error("Failed to log article click:", err);
