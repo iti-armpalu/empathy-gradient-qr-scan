@@ -11,6 +11,7 @@ export default function CardFront({ setFlipped, articles }) {
   return (
     <div className={`${styles.card} ${styles.front}`}>
       <div className={styles.scrollContainer}>
+      <Connect />
         <div>
           <Image
             src="/book-cover-graph.webp"
@@ -35,7 +36,7 @@ export default function CardFront({ setFlipped, articles }) {
             be automated entirely. Structured across four core themes, from adaptation and
             augmentation to agentic design.
           </p>
-
+          
           <Survey />
 
           {/* <div className={styles.articles}>
@@ -58,7 +59,7 @@ export default function CardFront({ setFlipped, articles }) {
         </div>
 
         <div>
-          <Connect />
+          
         </div>
       </div>
     </div>
