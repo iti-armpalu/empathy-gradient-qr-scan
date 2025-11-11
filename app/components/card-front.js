@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Flip from "./flip";
+// import Flip from "./flip";
 import Connect from "./connect";
 import styles from "../page.module.css";
 import { logArticleClick } from "../utils/log-article-click";
@@ -11,7 +11,6 @@ export default function CardFront({ setFlipped, articles }) {
   return (
     <div className={`${styles.card} ${styles.front}`}>
       <div className={styles.scrollContainer}>
-      <Connect />
         <div>
           <Image
             src="/book-cover-graph.webp"
@@ -28,6 +27,8 @@ export default function CardFront({ setFlipped, articles }) {
           <h6 className={styles.title}>
             Don’t get left behind. Learn to lead, build, and scale with empathy-aware systems.
           </h6>
+          <Connect />
+          <Survey />
           <p className={styles.bio}>
             The Empathy Gradient introduces a model for navigating work in the age
             of AI, one that replaces binary thinking about automation with a spectrum-based
@@ -36,8 +37,6 @@ export default function CardFront({ setFlipped, articles }) {
             be automated entirely. Structured across four core themes, from adaptation and
             augmentation to agentic design.
           </p>
-          
-          <Survey />
 
           {/* <div className={styles.articles}>
             <h2>Featured Articles</h2>
@@ -55,11 +54,11 @@ export default function CardFront({ setFlipped, articles }) {
               </div>
             ))}
           </div> */}
-          <Flip onClick={() => setFlipped(true)}>Explore articles and videos</Flip>
+          {/* <Flip onClick={() => setFlipped(true)}>Explore articles and videos</Flip> */}
         </div>
 
         <div>
-          
+
         </div>
       </div>
     </div>

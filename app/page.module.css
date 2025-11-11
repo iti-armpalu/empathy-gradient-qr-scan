@@ -158,9 +158,10 @@
   Connect Section
 ---------------------------------------- */
 .connect {
-  text-align: center;
-  padding-bottom: 1rem;
+  text-align: start;
+  padding: 0.5rem 0;
   border-bottom: 2px solid #ddd;
+  /* border-top: 2px solid #ddd; */
 }
 
 .connectLink {
