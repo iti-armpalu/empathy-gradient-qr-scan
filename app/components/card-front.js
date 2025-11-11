@@ -27,8 +27,8 @@ export default function CardFront({ setFlipped, articles }) {
           <h6 className={styles.title}>
             Don’t get left behind. Learn to lead, build, and scale with empathy-aware systems.
           </h6>
-          <Connect />
           <Survey />
+          <Connect />
           <p className={styles.bio}>
             The Empathy Gradient introduces a model for navigating work in the age
             of AI, one that replaces binary thinking about automation with a spectrum-based
